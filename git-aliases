@@ -1,0 +1,16 @@
+alias.lol log --oneline --graph --decorate
+alias.glo log --oneline
+alias.st status
+alias.aliases config --get-regexp alias
+alias.difft difftool --dir-diff
+alias.branchdl branch -d
+alias.branchdr push origin --delete
+alias.changed show --pretty="format:" --name-status
+alias.co checkout
+alias.ds diff --staged
+alias.dn diff --name-only
+alias.amend commit --amend --no-edit
+alias.acn commit -a --amend --no-edit
+alias.sshow !sh -c 'git stash show stash^{/$*} -p' -
+alias.sapply !sh -c 'git stash apply stash^{/$*}' -
+alias.ssave !sh -c 'git stash save ${1}' -
