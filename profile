@@ -11,8 +11,8 @@ HISTCONTROL=ignoreboth
 # 2>/dev/null to suppress the output
 # `xargs echo -n` to remove all whitespace in output
 BRANCH_="\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)"
-DIFF_NUMSTAT_="\$(git diff --numstat 2>/dev/null | wc -l | xargs echo -n)"
-DIFF_CACHED_NUMSTAT_="\$(git diff --cached --numstat 2>/dev/null | wc -l | xargs echo -n)"
+DIFF_NUMSTAT_="\$(if [ -e "./.git" ]; then git diff --numstat 2>/dev/null | wc -l | xargs echo -n; fi)"
+DIFF_CACHED_NUMSTAT_="\$(if [ -e "./.git" ]; then git diff --cached --numstat 2>/dev/null | wc -l | xargs echo -n; fi)"
 # The Command Prompt
 # The colors are preceded by an escape sequence \e and defined by a color value, composed of [style;color+m] and wrapped in an escaped [] sequence.
 # change [0 | 1] below for other shades of same color
@@ -23,16 +23,8 @@ YELLOW_="\[\e[1;33m\]"
 GREEN_="\[\e[1;32m\]"
 PURPLE_="\[\e[1;35m\]"
 BLUE_="\[\e[1;34m\]"
-PS1="[ $CYAN_\W$YELLOW_ $BRANCH_ $RED_$DIFF_NUMSTAT_$RESET_ $GREEN_$DIFF_CACHED_NUMSTAT_$RESET_ ] % "
+TIME="\[\$(date +%H:%M)\]"
+PS1="[ $PURPLE_$TIME $CYAN_\W$YELLOW_ $BRANCH_ $RED_$DIFF_NUMSTAT_$RESET_ $GREEN_$DIFF_CACHED_NUMSTAT_$RESET_ ] % "
 
 #ls alias to display colors
 alias ls="ls -G"
-
-## RVM setup
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
