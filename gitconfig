@@ -1,0 +1,23 @@
+[alias]
+        co = checkout
+        glo = log --oneline
+        st = status
+        aliases = config --get-regexp alias
+        branchdl = branch -d
+        branchdr = push origin --delete
+        changed = show --pretty=\"format:\" --name-status
+        ds = diff --staged
+        dn = diff --name-only
+        amend = commit --amend --no-edit
+        acn = commit -a --amend --no-edit
+
+        # checks out given pull request to a new local branch
+        # if branch name not specified it defaults to "pull/<number>"
+        #
+        # git co-pr origin 12 pull/12
+
+        co-pr = "!sh -c '        \tname=$3;         \tif [ -z $name ]; then name=pull/$2; fi;         \tgit fetch $1 pull/$2/head:$name;         \tgit checkout $name' -"
+
+[user]
+        email = saratsista@gmail.com
+        name = saratsista
